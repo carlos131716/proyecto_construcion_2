@@ -1,0 +1,206 @@
+<div class="page-container">
+
+  <div class="page-header">
+    <h1>Validación Técnica de Sistemas</h1>
+    <p>Gestión y revisión de sistemas informáticos institucionales</p>
+  </div>
+
+  <!-- KPIs -->
+
+  <div class="kpi-grid">
+
+    <div class="kpi-card total">
+      <span class="kpi-number">{{ totalSistemas }}</span>
+      <span class="kpi-label">Total Sistemas</span>
+    </div>
+
+    <div class="kpi-card enviado">
+      <span class="kpi-number">{{ enviados }}</span>
+      <span class="kpi-label">Enviados</span>
+    </div>
+
+    <div class="kpi-card aprobado">
+      <span class="kpi-number">{{ aprobados }}</span>
+      <span class="kpi-label">Aprobados</span>
+    </div>
+
+    <div class="kpi-card observado">
+      <span class="kpi-number">{{ observados }}</span>
+      <span class="kpi-label">Observados</span>
+    </div>
+
+    <div class="kpi-card rechazado">
+      <span class="kpi-number">{{ rechazados }}</span>
+      <span class="kpi-label">Rechazados</span>
+    </div>
+
+  </div>
+
+  <!-- FILTROS -->
+
+  <div class="card">
+
+    <div class="card-header">
+      <h3>Filtros de Búsqueda</h3>
+    </div>
+
+    <div class="card-body">
+
+      <div class="controls">
+
+        <input
+          type="search"
+          placeholder="Buscar por código, sistema, área o responsable"
+          [(ngModel)]="search"
+          (input)="onSearch()"
+        />
+
+        <select (change)="onFilterEstado($event)">
+          <option value="">Todos los estados</option>
+          <option value="ALL">Todos</option>
+
+          <option
+            *ngFor="let estado of estados"
+            [value]="estado"
+          >
+            {{ estado }}
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TABLA -->
+
+  <div class="card">
+
+    <div class="card-header">
+      <h3>Bandeja de Sistemas</h3>
+    </div>
+
+    <div class="card-body">
+
+      <table class="tabla">
+
+        <thead>
+
+          <tr>
+
+            <th (click)="setSort('codigo')">
+              Código
+            </th>
+
+            <th (click)="setSort('nombre')">
+              Sistema
+            </th>
+
+            <th (click)="setSort('area')">
+              Área
+            </th>
+
+            <th>
+              Responsable
+            </th>
+
+            <th (click)="setSort('estado')">
+              Estado
+            </th>
+
+            <th (click)="setSort('riesgo')">
+              Riesgo
+            </th>
+
+            <th>
+              Evidencias
+            </th>
+
+            <th>
+              Acción
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let item of paged">
+
+            <td>{{ item.codigo }}</td>
+
+            <td>{{ item.nombre }}</td>
+
+            <td>{{ item.area }}</td>
+
+            <td>{{ item.responsable }}</td>
+
+            <td>
+              <span
+                class="badge"
+                [ngClass]="'estado-' + item.estado"
+              >
+                {{ item.estado }}
+              </span>
+            </td>
+
+            <td>
+              <span
+                class="badge"
+                [ngClass]="'riesgo-' + item.riesgo"
+              >
+                {{ item.riesgo }}
+              </span>
+            </td>
+
+            <td>
+              {{ item.evidencias }}
+            </td>
+
+            <td>
+
+              <button
+                class="btn-primary"
+                (click)="goTo(item.id)"
+              >
+                Revisar
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <div class="pager">
+
+        <button
+          (click)="page = page - 1"
+          [disabled]="page <= 1"
+        >
+          Anterior
+        </button>
+
+        <span>
+          Página {{ page }} de {{ totalPages() }}
+        </span>
+
+        <button
+          (click)="page = page + 1"
+          [disabled]="page >= totalPages()"
+        >
+          Siguiente
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

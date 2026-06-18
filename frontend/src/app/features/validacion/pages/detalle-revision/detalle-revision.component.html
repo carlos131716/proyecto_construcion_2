@@ -1,0 +1,218 @@
+<div class="detail-container" *ngIf="item">
+
+  <!-- CABECERA -->
+
+  <div class="hero-card">
+
+    <div>
+      <h1>{{ item.nombre }}</h1>
+      <p>{{ item.codigo }}</p>
+    </div>
+
+    <div class="hero-badges">
+
+      <span
+        class="badge estado"
+        [ngClass]="'estado-' + item.estado"
+      >
+        {{ item.estado }}
+      </span>
+
+      <span
+        class="badge riesgo"
+        [ngClass]="'riesgo-' + item.riesgo"
+      >
+        Riesgo {{ item.riesgo }}
+      </span>
+
+    </div>
+
+  </div>
+
+  <!-- GRID -->
+
+  <div class="dashboard-grid">
+
+    <!-- GENERAL -->
+
+    <div class="panel">
+
+      <h3>Información General</h3>
+
+      <div class="info-row">
+        <span>Área</span>
+        <strong>{{ item.area }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Responsable</span>
+        <strong>{{ item.responsable }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Evidencias</span>
+        <strong>{{ item.evidencias }}</strong>
+      </div>
+
+    </div>
+
+    <!-- ARQUITECTURA -->
+
+    <div class="panel">
+
+      <h3>Arquitectura</h3>
+
+      <div class="info-row">
+        <span>Lenguaje</span>
+        <strong>{{ item.arquitectura?.lenguaje }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Framework</span>
+        <strong>{{ item.arquitectura?.framework }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Base de Datos</span>
+        <strong>{{ item.arquitectura?.bd }}</strong>
+      </div>
+
+    </div>
+
+    <!-- INFRA -->
+
+    <div class="panel">
+
+      <h3>Infraestructura</h3>
+
+      <div class="info-row">
+        <span>Servidor</span>
+        <strong>{{ item.infraestructura?.servidor }}</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Docker</span>
+        <strong>
+          {{ item.infraestructura?.docker ? 'Sí' : 'No' }}
+        </strong>
+      </div>
+
+      <div class="info-row">
+        <span>SSL</span>
+        <strong>
+          {{ item.infraestructura?.ssl ? 'Sí' : 'No' }}
+        </strong>
+      </div>
+
+      <div class="info-row">
+        <span>Dominio</span>
+        <strong>{{ item.infraestructura?.dominio }}</strong>
+      </div>
+
+    </div>
+
+    <!-- EVIDENCIAS -->
+
+    <div class="panel">
+
+      <h3>Evidencias Adjuntas</h3>
+
+      <ul class="files">
+
+        <li *ngFor="let file of item.archivos">
+          📄 {{ file }}
+        </li>
+
+        <li *ngIf="!item.archivos?.length">
+          Sin evidencias registradas
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <!-- AUDITORIA -->
+
+  <div class="audit-card">
+
+    <h2>Auditoría Técnica</h2>
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+    >
+
+      <div class="radio-group">
+
+        <label>
+          <input
+            type="radio"
+            value="APROBADO"
+            formControlName="resultado"
+          >
+          Aprobar
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            value="OBSERVADO"
+            formControlName="resultado"
+          >
+          Observar
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            value="RECHAZADO"
+            formControlName="resultado"
+          >
+          Rechazar
+        </label>
+
+      </div>
+
+      <textarea
+        rows="5"
+        formControlName="observacion"
+        placeholder="Ingrese observaciones técnicas..."
+      >
+      </textarea>
+
+      <div
+        class="error"
+        *ngIf="
+          form.get('observacion')?.touched &&
+          form.get('observacion')?.invalid
+        "
+      >
+        Debe ingresar una observación válida.
+      </div>
+
+      <div class="actions">
+
+        <button
+          type="submit"
+          class="btn-success"
+        >
+          Registrar Validación
+        </button>
+
+        <button
+          type="button"
+          class="btn-secondary"
+          (click)="router.navigate(['/validacion'])"
+        >
+          Volver
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

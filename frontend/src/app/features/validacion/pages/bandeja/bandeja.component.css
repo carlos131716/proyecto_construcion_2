@@ -1,0 +1,305 @@
+/* ==========================
+   CONTENEDOR GENERAL
+========================== */
+
+.page-container {
+  padding: 24px;
+  background: #f4f7fb;
+  min-height: 100vh;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #64748b;
+}
+
+/* ==========================
+   KPI CARDS
+========================== */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.kpi-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: .25s;
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+}
+
+.kpi-number {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.kpi-label {
+  margin-top: 8px;
+  color: #475569;
+  font-size: 14px;
+}
+
+/* COLORES KPI */
+
+.total {
+  border-left: 6px solid #2563eb;
+}
+
+.enviado {
+  border-left: 6px solid #0d6efd;
+}
+
+.aprobado {
+  border-left: 6px solid #198754;
+}
+
+.observado {
+  border-left: 6px solid #fd7e14;
+}
+
+.rechazado {
+  border-left: 6px solid #dc3545;
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  margin-bottom: 24px;
+}
+
+.card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* ==========================
+   FILTROS
+========================== */
+
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.controls input {
+  flex: 1;
+  min-width: 250px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  outline: none;
+}
+
+.controls input:focus {
+  border-color: #2563eb;
+}
+
+.controls select {
+  min-width: 220px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+/* ==========================
+   TABLA
+========================== */
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla thead {
+  background: #f1f5f9;
+}
+
+.tabla th {
+  padding: 14px;
+  text-align: left;
+  cursor: pointer;
+  color: #334155;
+  font-weight: 600;
+}
+
+.tabla td {
+  padding: 14px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.tabla tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ==========================
+   BADGES
+========================== */
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+
+  border-radius: 50px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: white;
+}
+
+/* ESTADOS */
+
+.estado-ENVIADO {
+  background: #0d6efd;
+}
+
+.estado-APROBADO {
+  background: #198754;
+}
+
+.estado-OBSERVADO {
+  background: #fd7e14;
+}
+
+.estado-RECHAZADO {
+  background: #dc3545;
+}
+
+/* RIESGOS */
+
+.riesgo-BAJO {
+  background: #198754;
+}
+
+.riesgo-MEDIO {
+  background: #ffc107;
+  color: #1f2937;
+}
+
+.riesgo-ALTO {
+  background: #fd7e14;
+}
+
+.riesgo-CRITICO {
+  background: #dc3545;
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 10px 16px;
+
+  cursor: pointer;
+  transition: .25s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================
+   PAGINACIÓN
+========================== */
+
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 25px;
+}
+
+.pager button {
+  padding: 8px 14px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: white;
+
+  cursor: pointer;
+}
+
+.pager button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 900px) {
+
+  .tabla {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .controls input,
+  .controls select {
+    width: 100%;
+  }
+
+}
